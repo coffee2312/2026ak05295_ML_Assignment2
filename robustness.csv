@@ -1,0 +1,21 @@
+ML Model Name,noise_sigma_dB,Accuracy
+Logistic Regression,0,0.9937
+Logistic Regression,3,0.9668
+Logistic Regression,6,0.9587
+Logistic Regression,9,0.9464
+Decision Tree,0,0.8417
+Decision Tree,3,0.748
+Decision Tree,6,0.7048
+Decision Tree,9,0.6595
+KNN,0,0.9821
+KNN,3,0.9711
+KNN,6,0.9658
+KNN,9,0.957
+Naive Bayes,0,0.5477
+Naive Bayes,3,0.5326
+Naive Bayes,6,0.5308
+Naive Bayes,9,0.5273
+Support Vector Machine,0,0.9904
+Support Vector Machine,3,0.9763
+Support Vector Machine,6,0.968
+Support Vector Machine,9,0.9552
