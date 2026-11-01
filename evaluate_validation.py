@@ -23,6 +23,10 @@ ok = (X > NO_SIGNAL).any(axis=1)                 # same rule as training: drop r
 X, y = X[ok].reset_index(drop=True), zone[ok].reset_index(drop=True)
 print(f"validation rows used: {len(X)} of {len(raw)}")
 
+# Save in the same layout as test_data.csv so it can be uploaded straight into the Streamlit app
+pd.concat([X, y.rename("zone")], axis=1).to_csv("validation_data.csv", index=False)
+print("Saved validation_data.csv (upload this in the app to see validation results there)")
+
 rows = []
 for p in sorted(glob.glob("model/*.joblib")):
     name = os.path.basename(p)[:-7].replace("_", " ").title()
