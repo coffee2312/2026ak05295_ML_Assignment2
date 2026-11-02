@@ -43,10 +43,16 @@ def evaluate(model, X, y):
     pred = model.predict(X)
     ms = (time.perf_counter() - t0) / max(len(X), 1) * 1000 * 1000
     proba = model.predict_proba(X)
-    if len(classes) == 2:
+    present = [c for c in classes if c in set(y)]          # AUC only over zones that occur in y
+    if len(present) < 2:
+        auc = float("nan")
+    elif len(classes) == 2:
         auc = roc_auc_score(y, proba[:, 1])
     else:
-        auc = roc_auc_score(y, proba, multi_class="ovr", average="weighted", labels=classes)
+        idx = [list(classes).index(c) for c in present]
+        pp = proba[:, idx]
+        pp = pp / np.maximum(pp.sum(axis=1, keepdims=True), 1e-12)
+        auc = roc_auc_score(y, pp, multi_class="ovr", average="weighted", labels=present)
     avg = "binary" if len(classes) == 2 else "weighted"
     kw = dict(average=avg, zero_division=0)
     if avg == "binary":
