@@ -1,7 +1,0 @@
-venv/
-_pycache_/
-*.pyc
-UJIndoorLoc/
-trainingData.csv
-validationData.csv
-prepared_data.csv
